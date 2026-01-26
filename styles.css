@@ -934,20 +934,21 @@ body {
 
 .event-image {
     flex: 1;
-    min-height: 300px;
+    min-height: 400px;
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow);
 }
 
-/* Image on Left (Odd) - Round Right Side */
+/* Image styles with margins */
 .event-item .event-image {
-    border-radius: 0 20px 20px 0;
+    margin: 1.5rem;
+    border-radius: 15px;
 }
 
-/* Image on Right (Even) - Round Left Side */
+/* Image on Right (Even) - Same styles as odd since we have margins now */
 .event-item:nth-child(even) .event-image {
-    border-radius: 20px 0 0 20px;
+    border-radius: 15px;
 }
 
 .event-image img {
@@ -994,8 +995,6 @@ body {
     background-position: center;
     color: white;
     text-align: center;
-    margin-top: 70px;
-    /* Offset for fixed nav */
 }
 
 .detail-hero::before {
