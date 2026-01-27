@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booth Registration - Ethos Sustainable Conference</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Specific styles for the isolated registration page */
+        .registration-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            min-width: 200px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .registration-form-section {
+            padding: 4rem 0;
+            background: var(--bg-white);
+        }
+
+        .form-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: -6rem auto 0;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--border-color);
+        }
+
+        .benefits-list {
+            margin: 2rem 0;
+            text-align: left;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .check-icon {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Simplified Navigation - Logo Only -->
+    <nav class="navbar">
+        <div class="container" style="justify-content: center;">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h1>Ethos Sustainability</h1>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Stats -->
+    <header class="registration-hero">
+        <div class="container">
+            <h1 class="hero-title" style="font-size: 3rem;">Secure Your Booth</h1>
+            <p class="hero-subtitle">Connect with the next generation of sustainable leaders</p>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-number">1,000+</span>
+                    <span class="stat-label">Student Attendees</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100</span>
+                    <span class="stat-label">Exclusive Spots</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Form Section -->
+    <section class="registration-form-section">
+        <div class="container">
+            <div class="form-card">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2 class="section-title" style="margin-bottom: 1rem; font-size: 2rem;">Company Registration</h2>
+                    <p style="color: var(--text-light);">Promote your brand, internships, and career opportunities to
+                        top-tier talent.</p>
+                </div>
+
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <span class="check-icon">✓</span>
+                        <p>Direct access to 1,000+ motivated students</p>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="check-icon">✓</span>
+                        <p>Showcase internships & job openings</p>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="check-icon">✓</span>
+                        <p>Network with other sustainable leaders</p>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="check-icon">✓</span>
+                        <p>Premium booth placement available</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" action="https://formspree.io/f/xkorqwlg" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyName">Company Name *</label>
+                            <input type="text" id="companyName" name="companyName" required
+                                placeholder="Enter company name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactName">Contact Person *</label>
+                            <input type="text" id="contactName" name="contactName" required placeholder="Full name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="email@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="opportunities">What opportunities are you promoting? *</label>
+                        <select id="opportunities" name="opportunities"
+                            style="width: 100%; padding: 0.875rem 1.25rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--bg-white); outline: none;">
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="internships">Internships</option>
+                            <option value="jobs">Full-time Positions</option>
+                            <option value="both">Both Internships & Jobs</option>
+                            <option value="branding">Brand Awareness Only</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requirements">Special Requirements / Comments</label>
+                        <textarea id="requirements" name="requirements" rows="4"
+                            placeholder="Electricity needs, table size preferences, etc."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem;">Reserve
+                            Your Spot</button>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">Limited availability.
+                            Registration closes soon.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content" style="justify-content: center; text-align: center;">
+                <div class="footer-brand">
+                    <h3>Ethos Sustainability</h3>
+                    <p style="margin-top: 1rem; opacity: 0.7;">Empowering the next generation of sustainable innovators.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Ethos Sustainable Business and STEAM Education</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
