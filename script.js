@@ -52,31 +52,72 @@ if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = newsletterForm.querySelector('input[type="email"]').value;
-        
+
         // Here you would typically send the email to your backend
         // For now, we'll just show an alert
         alert(`Thank you for subscribing! We'll send updates to ${email}`);
         newsletterForm.reset();
     });
 }
-
-// Contact Form Handling
+// Contact Form AJAX Submission
 const contactForm = document.getElementById('contactForm');
+const formResult = document.getElementById('contact-result');
+const submitBtn = document.getElementById('submit-btn');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
-        const formData = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            email: document.getElementById('email').value,
-            message: document.getElementById('message').value
-        };
-        
-        // Here you would typically send the form data to your backend
-        // For now, we'll just show an alert
-        alert(`Thank you for your message, ${formData.firstName}! We'll get back to you soon.`);
-        contactForm.reset();
+
+        // Visual feedback: Update button state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        formResult.style.display = 'block';
+        formResult.textContent = 'Please wait...';
+        formResult.style.backgroundColor = '#f0f0f0';
+        formResult.style.color = '#333';
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    formResult.textContent = 'Message sent successfully!';
+                    formResult.style.backgroundColor = '#d4edda';
+                    formResult.style.color = '#155724';
+                    contactForm.reset();
+                    submitBtn.style.display = 'none'; // Hide button on success
+                } else {
+                    console.log(response);
+                    formResult.textContent = json.message;
+                    formResult.style.backgroundColor = '#f8d7da';
+                    formResult.style.color = '#721c24';
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                formResult.textContent = 'Something went wrong!';
+                formResult.style.backgroundColor = '#f8d7da';
+                formResult.style.color = '#721c24';
+            })
+            .then(function () {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+                setTimeout(() => {
+                    // Keep result visible, or hide after 5s
+                    // formResult.style.display = "none";
+                }, 5000);
+            });
     });
 }
 
@@ -86,13 +127,13 @@ const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 100) {
         navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
     } else {
         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
-    
+
     lastScroll = currentScroll;
 });
 
