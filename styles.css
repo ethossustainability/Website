@@ -521,7 +521,15 @@ body {
 /* Contact Section */
 .contact {
     padding: 6rem 0;
-    background: var(--bg-light);
+    background: var(--bg-white);
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, rgba(125, 111, 99, 0), rgba(125, 111, 99, 0.3), rgba(125, 111, 99, 0));
+    margin: 0 auto;
+    width: 100%;
 }
 
 .contact-form {
