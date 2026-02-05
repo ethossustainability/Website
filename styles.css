@@ -52,6 +52,14 @@ body {
 
 .nav-brand a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-insignia {
+    height: 45px;
+    width: auto;
 }
 
 .nav-brand h1 {
