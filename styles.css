@@ -376,7 +376,19 @@ body {
 
 /* Page Header */
 .page-header {
-    padding-top: 8rem;
+    padding: 10rem 0 2rem;
+    text-align: center;
+}
+
+.page-header .section-title {
+    margin-bottom: 1rem;
+}
+
+.page-header .section-subtitle {
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Initiatives Sections */
@@ -745,7 +757,7 @@ section.contact {
 .team-info h3 {
     font-size: 1.1rem;
     color: var(--primary-color);
-    margin-bottom: 0px;
+    margin-bottom: 0.25rem;
     font-weight: 600;
 }
 
@@ -884,7 +896,8 @@ section.contact {
 .modal-bio {
     color: var(--text-light);
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.8;
+    white-space: pre-line;
 }
 
 /* Team Responsive */
