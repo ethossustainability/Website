@@ -188,12 +188,18 @@ if (teamModal) {
             const role = photo.dataset.memberRole;
             const bio = photo.dataset.memberBio;
             const image = photo.dataset.memberImage;
+            const cropX = photo.dataset.cropX || 'center';
+            const cropY = photo.dataset.cropY || 'center';
 
             document.getElementById('modalName').textContent = name;
             document.getElementById('modalRole').textContent = role;
             document.getElementById('modalBio').textContent = bio;
             const modalImg = document.getElementById('modalPhoto');
-            if (modalImg) modalImg.src = image;
+            if (modalImg) {
+                modalImg.src = image;
+                modalImg.style.setProperty('--crop-x', cropX);
+                modalImg.style.setProperty('--crop-y', cropY);
+            }
 
             teamModal.classList.add('active');
             document.body.style.overflow = 'hidden';
