@@ -838,6 +838,10 @@ section.contact {
     z-index: 2;
 }
 
+.modal-content.wide {
+    max-width: 1100px;
+}
+
 .team-modal.active .modal-content {
     transform: translateY(0);
 }

@@ -190,10 +190,18 @@ if (teamModal) {
             const image = photo.dataset.memberImage;
             const cropX = photo.dataset.cropX || 'center';
             const cropY = photo.dataset.cropY || 'center';
+            const modalSize = photo.dataset.modalSize;
 
             document.getElementById('modalName').textContent = name;
             document.getElementById('modalRole').textContent = role;
             document.getElementById('modalBio').textContent = bio;
+
+            const modalContent = teamModal.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.classList.remove('wide');
+                if (modalSize === 'wide') modalContent.classList.add('wide');
+            }
+
             const modalImg = document.getElementById('modalPhoto');
             if (modalImg) {
                 modalImg.src = image;
