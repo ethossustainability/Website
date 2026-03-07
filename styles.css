@@ -171,7 +171,8 @@ body {
 }
 
 .btn-secondary:hover {
-    background: var(--accent-light);
+    background: var(--primary-color);
+    color: #fff;
     transform: translateY(-2px);
 }
 
@@ -196,7 +197,62 @@ body {
 .highlight-content h2 {
     font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Free Badge — homepage banner */
+.free-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.4rem;
+    border-radius: 50px;
+    margin-bottom: 1.25rem;
+    animation: fadeInUp 0.6s ease both, badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(125, 111, 99, 0.35);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(125, 111, 99, 0);
+    }
+}
+
+.highlight-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1.75rem;
+    opacity: 0.9;
+}
+
+/* Free Badge — event card overlay */
+.event-image {
+    position: relative;
+}
+
+.free-badge-card {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 /* Projects Preview */
@@ -621,6 +677,16 @@ section.contact {
 
 .footer-contact p {
     font-size: 1.1rem;
+}
+
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: var(--accent-color);
 }
 
 .footer-bottom {
