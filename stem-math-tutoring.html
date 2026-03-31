@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team - Ethos Sustainability</title>
+    <title>Math Tutoring at ILT Keller K-8 - Ethos Sustainability</title>
     <link rel="stylesheet" href="styles.css?v=1.2">
-    <link rel="stylesheet" href="team-bubble.css?v=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -24,10 +19,10 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="stem.html">STEM</a></li>
+                <li><a href="stem.html" class="active">STEM</a></li>
                 <li><a href="business.html">Business</a></li>
                 <li><a href="partners.html">Partners</a></li>
-                <li><a href="team.html" class="active">Team</a></li>
+                <li><a href="team.html">Team</a></li>
             </ul>
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -38,55 +33,46 @@
     </nav>
 
     <main>
-        <!-- Page Header -->
         <section class="page-header">
             <div class="container">
-                <h1 class="section-title">Meet Our Team</h1>
-                <p class="section-subtitle">The passionate students and mentors driving sustainable education and change</p>
+                <h1 class="section-title">Math Tutoring at ILT Keller K-8</h1>
+                <p class="section-subtitle">Empowering 4th graders with foundational math skills</p>
             </div>
         </section>
 
-        <!-- Team Bubble Section -->
-        <section class="team-bubble-section">
+        <section class="detail-section">
             <div class="container">
-                <div class="team-bubble-title">Board Members</div>
-                <div class="bubble-grid" id="boardGrid"></div>
-                <div class="team-bubble-title" style="margin-top:3rem;">Team Leads & Members</div>
-                <div class="bubble-grid" id="coordinatorsGrid"></div>
-            </div>
-        </section>
+                <div class="section-header">
+                    <h2>Project Overview</h2>
+                    <div class="section-line"></div>
                 </div>
+                <p style="text-align: center; max-width: 800px; margin: 3.5rem auto auto auto; color: var(--text-light); line-height: 1.8;">
+                    In this outreach project, Ethos volunteers taught 4th grade math at ILT Keller K-8, helping students build foundational skills and confidence. The program focused on interactive lessons and personalized support, making math accessible and fun for young learners.
+                </p>
             </div>
         </section>
 
-        <!-- Join Us Section -->
-        <section class="team-cta">
+        <section class="detail-section">
             <div class="container">
-                <h2>Interested in Joining Ethos?</h2>
-                <p>Whether you're a student looking to get involved or a mentor wanting to give back, we'd love to hear
-                    from you!</p>
-                <a href="index.html#contact" class="btn btn-primary">Get In Touch</a>
+                <div class="section-header">
+                    <h2>Gallery</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="Assets/MathTutoring2025/IMG_0.jpg" alt="Math Tutoring Session 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Assets/MathTutoring2025/IMG_1.jpg" alt="Math Tutoring Session 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="Assets/MathTutoring2025/IMG_2.jpg" alt="Math Tutoring Session 3">
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Team Member Modal -->
-    <div id="teamModal" class="team-modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close modal">&times;</button>
-            <div class="modal-photo">
-                <img id="modalPhoto" src="" alt="Team member photo">
-            </div>
-            <div class="modal-info">
-                <h2 id="modalName"></h2>
-                <p id="modalRole" class="modal-role"></p>
-                <p id="modalBio" class="modal-bio"></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -108,9 +94,6 @@
             </div>
         </div>
     </footer>
-
     <script src="script.js"></script>
-    <script src="team-bubble.js"></script>
 </body>
-
 </html>

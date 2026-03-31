@@ -59,6 +59,68 @@ if (newsletterForm) {
         newsletterForm.reset();
     });
 }
+
+// Lightbox Modal Gallery for all .gallery-grid images
+function createLightboxModal() {
+    if (document.getElementById('lightboxModal')) return;
+    const modal = document.createElement('div');
+    modal.id = 'lightboxModal';
+    modal.style.position = 'fixed';
+    modal.style.top = 0;
+    modal.style.left = 0;
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.background = 'rgba(0,0,0,0.85)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = 9999;
+    modal.style.visibility = 'hidden';
+    modal.style.opacity = 0;
+    modal.style.transition = 'opacity 0.2s';
+    modal.innerHTML = `
+        <span id="lightboxClose" style="position:absolute;top:30px;right:50px;font-size:3rem;color:#fff;cursor:pointer;z-index:10001;">&times;</span>
+        <img id="lightboxImg" src="" alt="Gallery Image" style="max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    `;
+    document.body.appendChild(modal);
+    // Close logic
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.id === 'lightboxClose') {
+            modal.style.opacity = 0;
+            setTimeout(() => { modal.style.visibility = 'hidden'; }, 200);
+        }
+    });
+}
+
+function enableGalleryLightbox() {
+    createLightboxModal();
+    const modal = document.getElementById('lightboxModal');
+    const imgEl = document.getElementById('lightboxImg');
+    document.querySelectorAll('.gallery-grid .gallery-item img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            imgEl.src = img.src;
+            modal.style.visibility = 'visible';
+            modal.style.opacity = 1;
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', enableGalleryLightbox);
+// Quotes Carousel Logic
+document.addEventListener('DOMContentLoaded', function () {
+    const quotes = document.querySelectorAll('.quotes-carousel .quote-item');
+    let current = 0;
+    if (quotes.length > 0) {
+        setInterval(() => {
+            quotes[current].classList.remove('active');
+            current = (current + 1) % quotes.length;
+            quotes[current].classList.add('active');
+        }, 3500);
+    }
+});
+// (No closing bracket here)
 // Contact Form AJAX Submission
 const contactForm = document.getElementById('contactForm');
 const formResult = document.getElementById('contact-result');

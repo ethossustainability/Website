@@ -1,3 +1,168 @@
+/* YouTube logo for video links */
+.yt-logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    margin-bottom: 2px;
+    /* Slightly increase size for better alignment */
+    line-height: 1;
+}
+/* Conference Page Photo Banner */
+.page-header-banner {
+    position: relative;
+    color: #fff;
+    padding: 4.2rem 0 2.2rem 0;
+    margin-bottom: 1.7rem;
+    border-radius: 0;
+    box-shadow: 0 4px 24px rgba(60,60,60,0.08);
+    overflow: hidden;
+    background: #222;
+}
+.page-header-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('Assets/EthosConference2026/Conference13.jpg') center center/cover no-repeat;
+    filter: brightness(0.45) blur(0.5px);
+    z-index: 1;
+}
+.page-header-banner .container {
+    position: relative;
+    z-index: 2;
+}
+.page-header-banner .section-title,
+.page-header-banner .section-subtitle {
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.page-header-banner .section-title {
+    font-size: 2.7rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+}
+.page-header-banner .section-subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    opacity: 0.93;
+}
+/* Conference Video Links */
+.conference-video-links {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 2.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+}
+.conference-video-links li {
+    margin: 0;
+}
+.conference-link-btn {
+    display: inline-block;
+    background: var(--primary-color, #4CAF50);
+    color: #fff !important;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.08rem;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.18s, transform 0.18s;
+}
+.conference-link-btn:hover, .conference-link-btn:focus {
+    background: var(--primary-dark, #388E3C);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    text-decoration: none;
+}
+/* Impact Metrics Section */
+.impact-metrics-section {
+    background: var(--bg-white);
+    padding: 2.5rem 0 2.5rem 0;
+}
+.metrics-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 3.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+.metric {
+    background: var(--bg-light);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 2.2rem 2.5rem 1.7rem 2.5rem;
+    text-align: center;
+    min-width: 220px;
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.metric:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: var(--shadow-hover);
+}
+.metric-value {
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.7rem;
+    letter-spacing: 1px;
+}
+.metric-label {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+/* Quotes Carousel Section */
+.quotes-carousel-section {
+    background: var(--bg-light);
+    padding: 0 0 2.8rem 0;
+    margin-bottom: 0;
+}
+.quotes-carousel {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0 0.5rem 0;
+}
+.quote-item {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.6s;
+    font-size: 1.35rem;
+    color: var(--primary-dark);
+    text-align: center;
+    width: 100%;
+    left: 0;
+    top: 0;
+    font-style: italic;
+    z-index: 1;
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    box-sizing: border-box;
+}
+.quote-item.active {
+    opacity: 1;
+    z-index: 2;
+}
+.quote-author {
+    display: block;
+    margin-top: 1.2rem;
+    font-size: 1.05rem;
+    color: var(--text-light);
+    font-style: normal;
+    font-weight: 500;
+}
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -432,7 +597,7 @@ body {
 
 /* Page Header */
 .page-header {
-    padding: 10rem 0 2rem;
+    padding: 5rem 0 2rem;
     text-align: center;
 }
 
@@ -1121,7 +1286,7 @@ section.contact {
 }
 
 .detail-section {
-    padding: 5rem 0;
+    padding: 3rem 0;
 }
 
 .lesson-plan-section {
@@ -1175,7 +1340,8 @@ section.contact {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
 }
 
 .gallery-item {
@@ -1183,6 +1349,7 @@ section.contact {
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
+    background: #f3eee7;
 }
 
 .gallery-item img {

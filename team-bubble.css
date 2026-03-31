@@ -1,0 +1,166 @@
+
+:root {
+    --color-cream: #FFFBF4;
+    --color-tan-light: #D4CCC4;
+    --color-tan: #A89E94;
+    --color-brown-light: #7D6F63;
+    --color-brown-dark: #514033;
+    --color-peach-light: #FFE2D6;
+    --color-peach: #FCBD9D;
+    --color-dark: #413429;
+}
+
+.team-bubble-section {
+    background: var(--color-peach-light);
+    padding: 5rem 0 3rem 0;
+}
+.team-bubble-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-brown-dark);
+    letter-spacing: 1px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+}
+.bubble-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding-bottom: 6rem;
+}
+.bubble-item {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: var(--color-tan);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    overflow: hidden;
+    border: 1px solid rgba(81, 64, 51, 0.1);
+    box-shadow: 0 4px 10px rgba(81, 64, 51, 0.05);
+    animation: floating 6s ease-in-out infinite both alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform, border-radius;
+    transform: translateZ(0);
+}
+.bubble-item:hover {
+    transform: scale(1.25) rotate(2deg);
+    border-color: var(--color-peach);
+    box-shadow: 0 20px 40px rgba(81, 64, 51, 0.2);
+    z-index: 10;
+    border-radius: 50% !important;
+    animation-name: morph-1;
+    animation-duration: 4s;
+}
+.bubble-item:nth-child(2n):hover { animation-name: morph-2; }
+.bubble-item:nth-child(3n):hover { animation-name: morph-3; }
+.bubble-item:nth-child(4n):hover { animation-name: morph-4; }
+.bubble-img-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, var(--color-brown-dark) 0%, var(--color-brown-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-cream);
+    transition: var(--transition);
+    z-index: 1;
+}
+.bubble-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: var(--transition);
+    opacity: 0.8;
+    transform: scale(var(--zoom, 1));
+}
+.bubble-img-placeholder svg { opacity: 0.6; }
+.bubble-item:hover .bubble-img-placeholder {
+    background-color: var(--color-peach-light);
+    opacity: 0.15;
+}
+.bubble-item:hover .bubble-img {
+    transform: scale(calc(var(--zoom, 1) * 1.1));
+    opacity: 0.4;
+}
+.bubble-content {
+    position: relative;
+    z-index: 2;
+    color: var(--color-dark);
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: var(--transition);
+}
+.bubble-item:hover .bubble-content {
+    opacity: 1;
+    transform: scale(1);
+}
+.bubble-content h4 {
+    font-size: 0.7rem;
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
+.bubble-content .role-highlight {
+    font-size: 0.8rem;
+    color: var(--color-brown-dark);
+    font-weight: 800;
+    margin-top: 4px;
+    display: block;
+    line-height: 1;
+}
+@keyframes floating {
+    0% { transform: translateZ(0) translateY(0) rotate(0deg); }
+    33% { transform: translateZ(0) translateY(-8px) rotate(1deg); }
+    66% { transform: translateZ(0) translateY(4px) rotate(-1deg); }
+    100% { transform: translateZ(0) translateY(0) rotate(0deg); }
+}
+@keyframes morph-1 {
+    0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+@keyframes morph-2 {
+    0%,100% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
+    50% { border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%; }
+}
+@keyframes morph-3 {
+    0%,100% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+    50% { border-radius: 50% 50% 70% 30% / 70% 70% 30% 30%; }
+}
+@keyframes morph-4 {
+    0%,100% { border-radius: 50% 50% 50% 50% / 80% 20% 80% 20%; }
+    50% { border-radius: 80% 20% 80% 20% / 50% 50% 50% 50%; }
+}
+@media (max-width: 700px) {
+    .bubble-grid { gap: 1.25rem; margin: 2rem auto; padding-bottom: 3rem; }
+    .bubble-item { width: 110px; height: 110px; }
+    .bubble-content h4 { font-size: 0.55rem; }
+}
+@media (max-width: 480px) {
+    .bubble-grid { gap: 0.75rem; }
+    .bubble-item { width: 95px; height: 95px; }
+}
