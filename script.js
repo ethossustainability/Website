@@ -2,9 +2,12 @@
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
-if (navToggle) {
+if (navToggle && navMenu) {
+    navToggle.setAttribute('aria-expanded', 'false');
+
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+        const isExpanded = navMenu.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', String(isExpanded));
     });
 }
 
@@ -12,7 +15,12 @@ if (navToggle) {
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+        if (navMenu) {
+            navMenu.classList.remove('active');
+        }
+        if (navToggle) {
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
     });
 });
 
@@ -120,7 +128,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3500);
     }
 });
-// (No closing bracket here)
+
+// Swap label for coming-soon buttons while hovered or keyboard-focused.
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.coming-soon-btn').forEach(button => {
+        const originalText = button.textContent.trim() || 'Coming Soon';
+        button.dataset.defaultText = originalText;
+        button.style.minWidth = `${button.offsetWidth}px`;
+
+        button.addEventListener('mouseenter', () => {
+            button.textContent = 'Not Yet!';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.textContent = button.dataset.defaultText;
+        });
+
+        button.addEventListener('focus', () => {
+            button.textContent = 'Not Yet!';
+        });
+
+        button.addEventListener('blur', () => {
+            button.textContent = button.dataset.defaultText;
+        });
+    });
+});
+
 // Contact Form AJAX Submission
 const contactForm = document.getElementById('contactForm');
 const formResult = document.getElementById('contact-result');
@@ -129,6 +162,15 @@ const submitBtn = document.getElementById('submit-btn');
 if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        const botcheckValue = contactForm.querySelector('input[name="botcheck"]')?.value?.trim();
+        if (botcheckValue) {
+            formResult.style.display = 'block';
+            formResult.textContent = 'Submission blocked.';
+            formResult.style.backgroundColor = '#f8d7da';
+            formResult.style.color = '#721c24';
+            return;
+        }
 
         // Visual feedback: Update button state
         submitBtn.disabled = true;
@@ -184,7 +226,6 @@ if (contactForm) {
 }
 
 // Add scroll effect to navbar
-let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
@@ -196,7 +237,6 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     }
 
-    lastScroll = currentScroll;
 });
 
 // Fade in animation on scroll
