@@ -726,6 +726,63 @@ body {
     margin-right: auto;
 }
 
+/* Legal Pages */
+.legal-content {
+    padding: 0 0 5rem;
+    background: var(--bg-white);
+}
+
+.legal-layout {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.legal-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.legal-card h2 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 0.9rem;
+}
+
+.legal-card p,
+.legal-card li {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.legal-card p + p,
+.legal-card p + ul,
+.legal-card ul + p {
+    margin-top: 1rem;
+}
+
+.legal-card ul {
+    padding-left: 1.25rem;
+}
+
+.legal-card li {
+    margin-bottom: 0.6rem;
+}
+
+.legal-contact-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.legal-contact-link:hover,
+.legal-contact-link:focus {
+    text-decoration: underline;
+}
+
 /* Initiatives Sections */
 .initiatives-section {
     padding: 6rem 0;
@@ -1028,6 +1085,26 @@ section.contact {
     color: var(--accent-color);
 }
 
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus {
+    color: var(--accent-color);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
@@ -1091,6 +1168,10 @@ section.contact {
     .footer-content {
         flex-direction: column;
         text-align: center;
+    }
+
+    .footer-legal {
+        gap: 0.5rem 1rem;
     }
 
     .projects-grid {
