@@ -1826,6 +1826,15 @@ html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 .cursor-glow { position: fixed; top: 0; left: 0; width: 240px; height: 240px; margin: -120px; border-radius: 50%; pointer-events: none; z-index: 10001; background: radial-gradient(circle, rgba(243,151,114,.20), rgba(244,156,155,.08) 35%, transparent 68%); opacity: 0; transition: opacity .25s; will-change: transform; }
 .cursor-glow.is-visible { opacity: 1; }
 .cursor-glow.is-interactive { background: radial-gradient(circle, rgba(243,151,114,.32), transparent 65%); }
+/* Native image cursors keep the leaf tip aligned without a trailing pointer. */
+@media (hover: hover) and (pointer: fine) {
+    body { cursor: url('Assets/cursor-leaf.svg') 3 2, auto; }
+    a, button, summary, select, label[for], input[type="checkbox"], input[type="radio"], input[type="submit"], input[type="button"], #lightboxClose {
+        cursor: url('Assets/cursor-leaf-active.svg') 3 2, pointer !important;
+    }
+    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]), textarea, [contenteditable="true"] { cursor: text; }
+    button:disabled, input:disabled, select:disabled { cursor: not-allowed !important; }
+}
 .reveal-ready { opacity: 0; transform: translateY(22px); transition: opacity .7s ease var(--reveal-delay, 0ms), transform .7s cubic-bezier(.2,.65,.3,1) var(--reveal-delay, 0ms); }
 .reveal-ready.is-revealed { opacity: 1; transform: none; }
 .footer-play { color: var(--accent-color); border: 1px solid #bd8775; background: transparent; border-radius: 50%; width: 44px; height: 44px; font-size: 1.5rem; cursor: pointer; transition: transform .35s, background .2s; }

@@ -19,7 +19,7 @@ Open http://127.0.0.1:4174 in a browser.
 - A skippable seed-to-sprout welcome appears once per tab session, fades after the page loads, and has a 2.4-second fallback. Reduced-motion users skip it entirely.
 - Staggered scroll reveals, gentle header movement, responsive card interactions, and form focus effects are shared across the site's sections.
 - STEM, Business, Partners, and Team have distinct editorial openings, existing community photography or animated artwork, and clear routes into their content. Partners includes a featured Kumon partnership; Team uses named portrait cards with keyboard-accessible biographies.
-- Scroll reveals and a pointer-following glow on desktop. The native cursor remains visible.
+- Scroll reveals and a pointer-following glow on desktop. A logo-colored leaf cursor turns rose over interactive controls; text fields and photo zoom retain their familiar cursors. Touch devices keep their normal behavior.
 - The recycle symbol in each footer opens an eight-item sorting game with explanations, scoring, and replay. It supports clicks, touch, keyboard navigation, and Escape to close.
 - Footer motion controls pause animation and the quote carousel. The site respects the operating system's reduced-motion setting; the cursor glow is disabled on mobile.
 
