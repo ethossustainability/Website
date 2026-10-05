@@ -7,14 +7,15 @@
     <title>Our Team - Ethos Sustainability</title>
     <meta name="description" content="Get to know the Ethos Sustainability team leading student-driven programs in sustainability, STEAM, and business education.">
     <link rel="icon" type="image/png" href="Assets/EthosLogoInsignia.png">
-    <link rel="stylesheet" href="styles.css?v=1.2">
-    <link rel="stylesheet" href="team-bubble.css?v=1.0">
+    <link rel="stylesheet" href="styles.css?v=2.9">
+    <link rel="stylesheet" href="team-bubble.css?v=2.1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="experience.js?v=1.0" defer></script>
 </head>
 
-<body>
+<body class="subpage team-page">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -41,33 +42,45 @@
 
     <main>
         <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1 class="section-title">Meet Our Team</h1>
-                <p class="section-subtitle">The passionate students and mentors driving sustainable education and change</p>
+        <section class="subpage-hero">
+            <div class="container subpage-hero-grid">
+                <div class="subpage-intro">
+                    <p class="section-eyebrow">TEAM / THE PEOPLE BEHIND THE POSSIBILITIES</p>
+                    <h1>Different minds.<br><em>One shared purpose.</em></h1>
+                    <p>Students, thinkers, builders, and a few very big ideas. Meet the people giving their time and curiosity to make sustainability education happen.</p>
+                    <a href="#meet-the-team" class="btn btn-primary">Meet the people ↓</a>
+                    <div class="topic-tags"><span>Youth-led</span><span>Curiosity-driven</span><span>Better together</span></div>
+                </div>
+                <div class="team-hero-collage" aria-label="Some of the people behind Ethos">
+                    <figure><img src="Assets/TeamPics/Prahaladh.webp" alt="Prahaladh Gopalakrishnan" fetchpriority="high"><figcaption>The thinkers.</figcaption></figure>
+                    <figure><img src="Assets/TeamPics/Shriya.webp" alt="Shriya Deoli"><figcaption>The connectors.</figcaption></figure>
+                    <figure><img src="Assets/TeamPics/Arabella.webp" alt="Arabella Glass"><figcaption>The builders.</figcaption></figure>
+                    <span class="collage-spark" aria-hidden="true">✳</span>
+                </div>
             </div>
         </section>
 
         <!-- Team Bubble Section -->
-        <section class="team-bubble-section">
+        <section class="team-bubble-section" id="meet-the-team">
             <div class="container">
-                <div class="team-bubble-title">Board Members</div>
+                <p class="section-eyebrow">MEET THE TEAM / LEADING THE WAY</p>
+                <h2 class="team-bubble-title">Ideas need people.</h2>
+                <p class="people-section-note">Our board brings the vision, direction, and care that keep Ethos moving.</p>
                 <div class="bubble-grid" id="boardGrid"></div>
-                <div class="team-bubble-title" style="margin-top:3rem;">Team Leads & Members</div>
+                <p class="section-eyebrow">TEAM LEADS & MEMBERS / MAKING IT HAPPEN</p>
+                <h2 class="team-bubble-title">Meet the doers.</h2>
                 <div class="bubble-grid" id="coordinatorsGrid"></div>
-            </div>
-        </section>
-                </div>
             </div>
         </section>
 
         <!-- Join Us Section -->
         <section class="team-cta">
             <div class="container">
-                <h2>Interested in Joining Ethos?</h2>
+                <p class="section-eyebrow">YOUR NEXT CHAPTER</p>
+                <h2>Bring your curiosity.</h2>
                 <p>Whether you're a student looking to get involved or a mentor wanting to give back, we'd love to hear
                     from you!</p>
-                <a href="index.html#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="internships.html" class="btn btn-primary">Explore opportunities ↗</a>
             </div>
         </section>
     </main>
@@ -111,8 +124,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="team-bubble.js"></script>
+    <script src="script.js?v=2.5"></script>
+    <script src="team-bubble.js?v=2.1"></script>
 </body>
 
 </html>
