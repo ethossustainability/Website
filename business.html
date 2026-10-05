@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Initiatives - Ethos Sustainability</title>
-    <title>Business Initiatives - Ethos Sustainability</title>
     <meta name="description" content="Discover Ethos Sustainability business initiatives, from circular economy conferences to student workshops on sustainable leadership and entrepreneurship.">
     <link rel="icon" type="image/png" href="Assets/EthosLogoInsignia.png">
-    <link rel="stylesheet" href="styles.css?v=1.2">
+    <link rel="stylesheet" href="styles.css?v=2.7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="experience.js?v=1.0" defer></script>
 </head>
 
-<body>
+<body class="subpage business-page">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -40,21 +40,30 @@
     </nav>
 
     <!-- Business Initiatives -->
-    <section class="initiatives-section alt-bg page-header">
+    <section class="subpage-hero">
+        <div class="container subpage-hero-grid">
+            <div class="subpage-intro">
+                <p class="section-eyebrow">BUSINESS / RETHINK THE WAY THINGS WORK</p>
+                <h1>Better ideas.<br><em>Better business.</em></h1>
+                <p>A good business idea can do more than turn a profit. Explore how young people are bringing circular thinking, responsible leadership, and fresh perspectives to the table.</p>
+                <a href="#programs" class="btn btn-primary">Explore the possibilities ↗</a>
+                <div class="topic-tags"><span>Circular economy</span><span>Leadership</span><span>Enterprise</span></div>
+            </div>
+            <figure class="subpage-feature"><img src="Assets/EthosConference2026/Conference00.webp" alt="Speaker discussing circularity with students at the Ethos Circular Economy Conference" fetchpriority="high"><figcaption><span>THINKING IN CIRCLES</span> New ideas belong in the conversation.</figcaption><div class="feature-spark" aria-hidden="true">↻</div></figure>
+        </div>
+    </section>
+    <section class="initiatives-section programs-section" id="programs">
         <div class="container">
-            <h1 class="section-title">Business Initiatives</h1>
-            <p class="section-subtitle">Fostering Sustainable Entrepreneurship</p>
+            <div class="section-heading-row"><div><p class="section-eyebrow">EXPLORE / BUSINESS INITIATIVES</p><h2>A different way<br><em>to do business.</em></h2></div><p>Meet the ideas, conversations, and experiences<br>helping students think beyond business as usual.</p></div>
             <div class="initiatives-content">
-                <p>Our Business Initiatives prepare students to become sustainable entrepreneurs and business leaders.
-                    We provide workshops, mentorship programs, and resources that teach young people how to build
-                    businesses that prioritize environmental responsibility and social impact.</p>
                 <div class="event-list">
                     <!-- Event Item: Ethos Circular Economy Conference 2026 -->
                     <div class="event-item">
                         <div class="event-image">
-                            <img src="Assets/EthosConference2026/Conference00.jpg" alt="Ethos Circular Economy Conference 2026">
+                            <img src="Assets/EthosConference2026/Conference25.webp" alt="Panelists in conversation at the Ethos Circular Economy Conference">
                         </div>
                         <div class="event-content">
+                            <p class="program-kicker">01 / THE CONVERSATION</p>
                             <h3>Ethos Circular Economy Conference 2026</h3>
                             <p>On March 21st, 2026, Ethos hosted the Ethos Circular Economy Conference, sharing our mission, student-led projects, and impact with educators, students, and leaders in sustainability and business. See the gallery and download our presentation.</p>
                             <a href="business-conference-2026.html" class="btn btn-primary">View Conference Details</a>
@@ -64,10 +73,11 @@
                     <!-- Event Item 1 -->
                     <div class="event-item">
                         <div class="event-image">
-                            <img src="Assets/EconConference2025/IMG_2316.jpg" alt="Circular Economy Workshop India">
+                            <img src="Assets/EconConference2025/IMG_2316.webp" alt="Circular Economy Workshop India">
                         </div>
                         <div class="event-content">
                             <h3>Circular Economy Workshop - India</h3>
+                            <p class="program-kicker">02 / CIRCULAR THINKING</p>
                             <p>An immersive workshop conducted in India, teaching students how to design waste out of
                                 the system. We collaborated with local schools to explore how traditional practices
                                 intersect with modern circular economy principles.</p>
@@ -78,13 +88,14 @@
                     <!-- Event Item 2 -->
                     <div class="event-item">
                         <div class="event-image">
-                            <img src="Assets/EconConference2025/IMG_2302.jpg" alt="Mentorship Program">
+                            <img src="Assets/EconConference2025/IMG_2302.webp" alt="Mentorship Program">
                         </div>
                         <div class="event-content">
                             <h3>Business Workshops</h3>
+                            <p class="program-kicker">03 / WHAT'S NEXT</p>
                             <p>Connecting students with experienced business leaders who share insights on sustainable
                                 business practices. Get guidance from those who have done it before.</p>
-                            <a href="#" class="btn btn-primary coming-soon-btn">Coming Soon</a>
+                            <button type="button" class="btn btn-primary" disabled>Coming Soon</button>
                         </div>
                     </div>
 
@@ -116,7 +127,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2.4"></script>
 </body>
 
 </html>

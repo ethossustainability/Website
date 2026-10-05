@@ -7,13 +7,14 @@
     <title>Ethos Sustainability - Championing Sustainable Education in STEAM and Business Fields</title>
     <meta name="description" content="Ethos Sustainability is a youth-led nonprofit delivering hands-on sustainability education through STEAM and business workshops, projects, and community partnerships.">
     <link rel="icon" type="image/png" href="Assets/EthosLogoInsignia.png">
-    <link rel="stylesheet" href="styles.css?v=1.2">
+    <link rel="stylesheet" href="styles.css?v=2.7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="experience.js?v=1.0" defer></script>
 </head>
 
-<body>
+<body class="home-page">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -40,24 +41,33 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
+        <div class="container hero-grid">
             <div class="hero-content">
-                <p class="hero-kicker">Youth-Led Nonprofit</p>
-                <h1 class="hero-title">Ethos Sustainability</h1>
-                <p class="hero-subtitle">Championing Sustainable Education in STEAM and Business Fields</p>
-                <a href="stem.html" class="btn btn-primary">Explore our Initiatives</a>
+                <p class="hero-kicker"><span class="status-dot" aria-hidden="true"></span> Youth-led. Future-focused.</p>
+                <h1 class="hero-title">Small actions.<br><span>A greener</span><br>generation.</h1>
+                <p class="hero-subtitle">Big change starts with curious minds. We bring sustainability to life through hands-on STEAM and business education.</p>
+                <div class="hero-actions"><a href="stem.html" class="btn btn-primary">Explore our initiatives <span aria-hidden="true">↗</span></a><a href="#story" class="hero-story-link">Meet the movement <span aria-hidden="true">↓</span></a></div>
+                <p class="hero-note">For youth. By youth. For a better future.</p>
+            </div>
+            <div class="hero-visual">
+                <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+                <figure class="hero-photo"><img src="Assets/EthosConference2026/Conference13.webp" alt="Students and educators discussing sustainability at an Ethos conference" width="5712" height="4284" fetchpriority="high"><figcaption><span class="status-dot" aria-hidden="true"></span> Real conversations. Real change.</figcaption></figure>
+                <div class="planet-stamp" aria-hidden="true"><span>GROW A<br>BETTER</span><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="2"/><ellipse cx="40" cy="40" rx="13" ry="28" stroke="currentColor" stroke-width="2"/><path d="M13 32h54M13 48h54M40 12v56" stroke="currentColor" stroke-width="2"/></svg><span>TOMORROW</span></div>
+                <div class="hero-photo-tag"><span aria-hidden="true">✳</span><p>A little curiosity.<br>A lot of possibility.</p></div>
             </div>
         </div>
     </section>
+
+    <div class="values-ribbon" aria-label="Our values: sustainability, innovation, education, community"><div class="ribbon-track" aria-hidden="true"><span>SUSTAINABILITY ✳ INNOVATION ✳ EDUCATION ✳ COMMUNITY ✳ </span><span>SUSTAINABILITY ✳ INNOVATION ✳ EDUCATION ✳ COMMUNITY ✳ </span></div></div>
 
     <!-- Internships Banner -->
     <section class="internships-banner-section">
         <div class="container">
             <div class="internships-banner">
                 <p class="internships-kicker">Opportunities at Ethos</p>
-                <h2>INTERNSHIPS APPLICATIONS ARE OPEN</h2>
+                <h2>Your next chapter can change things.</h2>
                 <p class="internships-copy">Join our team and help expand sustainable education through hands-on projects, events, and outreach.</p>
-                <a href="internships.html" class="btn btn-primary">Apply</a>
+                <a href="internships.html" class="btn btn-primary">Explore internships ↗</a>
             </div>
         </div>
     </section>
@@ -116,8 +126,10 @@
     <!-- Our Story -->
     <section id="story" class="story">
         <div class="container">
-            <h2 class="section-title">Our Story</h2>
+            <p class="section-eyebrow">01 / THE MOVEMENT</p>
+            <h2 class="section-title">A question became<br>a movement.</h2>
             <div class="story-content">
+                <figure class="story-photo"><img src="Assets/EthosConference2026/Conference07.webp" alt="Student presenting from the podium at an Ethos sustainability conference" loading="lazy"><figcaption>Young voices. Ideas worth sharing.</figcaption></figure>
                 <p>It all started with a question: <strong>"Why don't more kids know about sustainability?"</strong></p>
                 <p>Our founder and Executive Director, a high school student at the time, noticed that his
                     classmates—and even younger students—were rarely taught about the environment, renewable energy, or
@@ -176,7 +188,7 @@
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
-                <div id="contact-result"
+                <div id="contact-result" role="status" aria-live="polite" aria-atomic="true"
                     style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px; text-align: center;">
                 </div>
             </form>
@@ -205,7 +217,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2.4"></script>
 </body>
 
 </html>

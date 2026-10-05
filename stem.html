@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STEM Initiatives - Ethos Sustainability</title>
-    <title>STEM Initiatives - Ethos Sustainability</title>
     <meta name="description" content="Explore Ethos Sustainability STEM initiatives, including innovation competitions, math tutoring, and hands-on engineering workshops for students.">
     <link rel="icon" type="image/png" href="Assets/EthosLogoInsignia.png">
-    <link rel="stylesheet" href="styles.css?v=1.2">
+    <link rel="stylesheet" href="styles.css?v=2.7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="experience.js?v=1.0" defer></script>
 </head>
 
-<body>
+<body class="subpage stem-page">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -40,15 +40,22 @@
     </nav>
 
     <!-- STEM Initiatives -->
-    <section class="initiatives-section alt-bg page-header">
+    <section class="subpage-hero">
+        <div class="container subpage-hero-grid">
+            <div class="subpage-intro">
+                <p class="section-eyebrow">STEM / THINK. TRY. BUILD.</p>
+                <h1>Curiosity today.<br><em>Solutions tomorrow.</em></h1>
+                <p>What happens when students get the space to experiment? Ideas become prototypes, questions become discoveries, and sustainability gets hands-on.</p>
+                <a href="#programs" class="btn btn-primary">Find your next experiment ↗</a>
+                <div class="topic-tags"><span>Science</span><span>Engineering</span><span>Math</span></div>
+            </div>
+            <figure class="subpage-feature"><img src="Assets/InnovationProjects25-26/InnovationComp_Thumbnail.webp" alt="Student presenting a sustainability innovation project" fetchpriority="high"><figcaption><span>IDEAS IN ACTION</span> A new perspective starts with a question.</figcaption><div class="feature-spark" aria-hidden="true">✳</div></figure>
+        </div>
+    </section>
+    <section class="initiatives-section programs-section" id="programs">
         <div class="container">
-            <h1 class="section-title">STEM Initiatives</h1>
-            <p class="section-subtitle">Empowering the Next Generation of Innovators</p>
+            <div class="section-heading-row"><div><p class="section-eyebrow">EXPLORE / STEM INITIATIVES</p><h2>Less watching.<br><em>More doing.</em></h2></div><p>From the first “what if” to the final prototype.<br>Find a place to put your curiosity to work.</p></div>
             <div class="initiatives-content">
-                <p>Our STEM Initiatives focus on integrating sustainability into science, technology, engineering, and
-                    mathematics education. Through hands-on workshops, science fairs, and innovative programs, we
-                    inspire students to explore real-world environmental challenges and develop sustainable solutions.
-                </p>
                 <div class="event-list">
                     <!-- Event Item 1 -->
 
@@ -56,12 +63,13 @@
                     <div class="event-item">
                         <div class="event-image">
                             <!-- Placeholder image, user should replace -->
-                            <img src="Assets/InnovationProjects25-26/InnovationComp_Thumbnail.jpg"
+                            <img src="Assets/InnovationProjects25-26/InnovationComp_Thumbnail.webp"
                                 alt="Innovation Competition">
                         </div>
                         <div class="event-content">
+                            <p class="program-kicker">01 / STUDENT INNOVATION</p>
                             <h3>Annual Innovation Competition</h3>
-                            <p>Our flagship event encourages students to drama creative problem-solving. Students
+                            <p>Our flagship event encourages students to explore creative problem-solving. Students
                                 design, build, and present innovative solutions to a panel of judges.</p>
                             <a href="stem-innovation-competition.html" class="btn btn-primary">View 2025-2026
                                 Winners</a>
@@ -71,25 +79,28 @@
                     <!-- Event Item: Math Tutoring -->
                     <div class="event-item">
                         <div class="event-image">
-                            <img src="Assets/MathTutoring2025/IMG_0.jpg" alt="Math Tutoring Session 1" style="width: 100%; object-fit: cover;">
+                            <img src="Assets/MathTutoring2025/IMG_0.webp" alt="Math Tutoring Session 1" style="width: 100%; object-fit: cover;">
                         </div>
                         <div class="event-content">
                             <h3>Math Tutoring at ILT Keller K-8</h3>
-                            <p>We taught 4th grade math at ILT Keller K-8.</p>
+                            <p class="program-kicker">02 / BUILDING CONFIDENCE</p>
+                            <p>Big discoveries start with strong foundations. Our team brought hands-on fourth-grade math learning to students at ILT Keller K-8.</p>
                             <a href="stem-math-tutoring.html" class="btn btn-primary">View Details & Gallery</a>
                         </div>
                     </div>
 
                     <!-- Event Item 3 -->
-                    <div class="event-item">
-                        <div class="event-image">
-                            <img src="https://placehold.co/400x300/A89E94/FFFFFF?text=Coming Soon" alt="Engineering Workshop">
+                    <div class="event-item" id="engineering-workshops">
+                        <div class="event-image event-placeholder">
+                            <span aria-hidden="true">✳</span>
+                            <p>More ideas.<br>Coming soon.</p>
                         </div>
                         <div class="event-content">
                             <h3>More Engineering Workshops</h3>
+                            <p class="program-kicker">03 / WHAT'S NEXT</p>
                             <p>Hands-on workshops where students design and build sustainable solutions using real-world
                                 engineering principles. From wind turbines to water filtration systems.</p>
-                            <a href="#" class="btn btn-primary coming-soon-btn">Coming Soon</a>
+                            <button type="button" class="btn btn-primary" disabled>Coming Soon</button>
                         </div>
                     </div>
 
@@ -121,7 +132,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2.4"></script>
 </body>
 
 </html>

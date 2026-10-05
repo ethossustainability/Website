@@ -1,4 +1,216 @@
 // Mobile Navigation Toggle
+// Shared motion preferences, also respected by the existing carousel and anchors.
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+document.addEventListener('DOMContentLoaded', () => {
+    try { document.body.classList.toggle('motion-paused', sessionStorage.getItem('ethos-motion-paused') === 'true'); } catch { }
+    const footer = document.querySelector('.footer');
+    const motionButton = document.createElement('button');
+    motionButton.type = 'button';
+    motionButton.className = 'motion-toggle';
+    motionButton.textContent = 'Pause motion';
+    motionButton.setAttribute('aria-pressed', 'false');
+    if (document.body.classList.contains('motion-paused')) {
+        motionButton.textContent = 'Resume motion';
+        motionButton.setAttribute('aria-pressed', 'true');
+    }
+    footer?.querySelector('.footer-bottom')?.appendChild(motionButton);
+
+    const revealElements = document.querySelectorAll('.internships-banner, .metric, .story-content, .mission-content, .event-item, .initiative-card, .partner-card, .section-title, .section-subtitle, .partners-cta, .partner-logo-item, .internship-form-card, .gallery-item, .lesson-sidebar, .lesson-steps, .contact-form, .legal-content, .partner-spotlight, .section-heading-row');
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: .08 });
+    if (!reducedMotion.matches && !document.body.classList.contains('motion-paused')) revealElements.forEach(element => {
+        const siblings = [...element.parentElement.children].filter(child => child.matches('.metric, .partner-logo-item, .gallery-item, .initiative-card, .partner-card'));
+        const index = siblings.indexOf(element);
+        if (index >= 0) element.style.setProperty('--reveal-delay', `${Math.min(index, 3) * 80}ms`);
+        element.classList.add('reveal-ready');
+        revealObserver.observe(element);
+    });
+
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    glow.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(glow);
+    let glowFrame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
+    function hideGlow() {
+        cancelAnimationFrame(glowFrame);
+        glowFrame = 0;
+        glow.classList.remove('is-visible');
+    }
+    document.addEventListener('pointermove', event => {
+        if (!finePointer.matches || reducedMotion.matches || document.body.classList.contains('motion-paused') || event.pointerType === 'touch') return;
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        glow.classList.add('is-visible');
+        glow.classList.toggle('is-interactive', Boolean(event.target.closest('a, button, input, textarea')));
+        if (!glowFrame) glowFrame = requestAnimationFrame(() => {
+            glow.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+            glowFrame = 0;
+        });
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', hideGlow);
+    window.addEventListener('blur', hideGlow);
+    reducedMotion.addEventListener('change', hideGlow);
+    reducedMotion.addEventListener('change', () => {
+        if (reducedMotion.matches) revealElements.forEach(element => element.classList.add('is-revealed'));
+    });
+    finePointer.addEventListener('change', hideGlow);
+    motionButton.addEventListener('click', () => {
+        const paused = document.body.classList.toggle('motion-paused');
+        try { sessionStorage.setItem('ethos-motion-paused', String(paused)); } catch { }
+        motionButton.setAttribute('aria-pressed', String(paused));
+        motionButton.textContent = paused ? 'Resume motion' : 'Pause motion';
+        if (paused) {
+            hideGlow();
+            revealElements.forEach(element => element.classList.add('is-revealed'));
+            document.querySelectorAll('.project-card').forEach(element => {
+                element.style.opacity = '1';
+                element.style.transform = 'none';
+            });
+        }
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        if (new URL(link.href).pathname === window.location.pathname ||
+            (window.location.pathname.endsWith('/') && new URL(link.href).pathname === `${window.location.pathname}index.html`)) {
+            link.setAttribute('aria-current', 'page');
+        }
+    });
+    if (!footer) return;
+
+    const launch = document.createElement('button');
+    launch.type = 'button';
+    launch.className = 'footer-play';
+    launch.textContent = '♻';
+    launch.title = 'A little planet-friendly detour';
+    launch.setAttribute('aria-label', 'Play the recycling sorting game');
+    (footer.querySelector('.footer-social') || footer.querySelector('.footer-content')).appendChild(launch);
+
+    const game = document.createElement('dialog');
+    game.className = 'eco-game';
+    game.setAttribute('aria-labelledby', 'game-title');
+    game.setAttribute('aria-describedby', 'game-intro');
+    game.innerHTML = `
+        <div class="game-top"><span class="game-kicker">You found the easter egg ✳</span><button type="button" class="game-close" aria-label="Close recycling game" autofocus>×</button></div>
+        <h2 id="game-title">Give it a second life.</h2>
+        <p class="game-intro" id="game-intro">Eight everyday items. Three bins. How well can you sort? Select a bin with a click, tap, or keyboard.</p>
+        <div class="game-progress"><span id="game-round"></span><span id="game-score"></span></div>
+        <progress max="8" value="0" aria-label="Items sorted"></progress>
+        <div class="game-item"><span class="game-emoji" aria-hidden="true"></span><h3 id="game-item-name"></h3></div>
+        <div class="game-bins" role="group" aria-label="Choose a bin">
+            <button type="button" class="game-bin" data-bin="recycle"><span aria-hidden="true">♻</span>Recycle</button>
+            <button type="button" class="game-bin" data-bin="compost"><span aria-hidden="true">🌱</span>Compost</button>
+            <button type="button" class="game-bin" data-bin="trash"><span aria-hidden="true">🗑</span>Trash</button>
+        </div>
+        <p class="game-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+        <button type="button" class="btn btn-primary game-next" hidden>Next item →</button>
+        <p class="game-note">A practice round for common materials. Recycling and compost rules vary—always check your local program. Never put batteries in these bins.</p>`;
+    document.body.appendChild(game);
+
+    const items = [
+        { name: 'Empty aluminum can', emoji: '🥫', bin: 'recycle', tip: 'Empty aluminum cans can be recycled into new metal products.' },
+        { name: 'Banana peel', emoji: '🍌', bin: 'compost', tip: 'Fruit peels can return nutrients to soil in a compost system.' },
+        { name: 'Clean cardboard box', emoji: '📦', bin: 'recycle', tip: 'Flatten clean, dry cardboard before placing it in recycling.' },
+        { name: 'Used disposable diaper', emoji: '🧷', bin: 'trash', tip: 'Used disposable diapers belong in the trash, never recycling or home compost.' },
+        { name: 'Apple core', emoji: '🍎', bin: 'compost', tip: 'Apple cores and other fruit scraps can go into compost.' },
+        { name: 'Broken ceramic mug', emoji: '☕', bin: 'trash', tip: 'Ceramics cannot be recycled with glass. Wrap sharp pieces before disposal.' },
+        { name: 'Clean newspaper', emoji: '📰', bin: 'recycle', tip: 'Clean, dry newspaper can be recycled into new paper.' },
+        { name: 'Dry leaves', emoji: '🍂', bin: 'compost', tip: 'Dry leaves add carbon to compost. Mix them with food scraps.' }
+    ];
+    const bins = [...game.querySelectorAll('.game-bin')];
+    const next = game.querySelector('.game-next');
+    const feedback = game.querySelector('.game-feedback');
+    let deck = [];
+    let round = 0;
+    let score = 0;
+    let answered = false;
+    let previousOverflow = '';
+
+    function renderRound() {
+        answered = false;
+        const item = deck[round];
+        game.querySelector('#game-round').textContent = `Item ${round + 1} of ${deck.length}`;
+        game.querySelector('#game-score').textContent = `${score} correct`;
+        game.querySelector('progress').value = round;
+        game.querySelector('.game-emoji').textContent = item.emoji;
+        game.querySelector('#game-item-name').textContent = item.name;
+        feedback.textContent = '';
+        bins.forEach(bin => { bin.disabled = false; });
+        game.querySelector('.game-bins').hidden = false;
+        next.hidden = true;
+        next.textContent = 'Next item →';
+    }
+    function restart() {
+        deck = [...items];
+        for (let i = deck.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        round = 0;
+        score = 0;
+        renderRound();
+    }
+    launch.addEventListener('click', () => {
+        restart();
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        game.showModal();
+    });
+    bins.forEach(bin => bin.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        const item = deck[round];
+        const correct = bin.dataset.bin === item.bin;
+        if (correct) score++;
+        feedback.textContent = `${correct ? 'Nice sorting!' : `This one goes in ${item.bin}.`} ${item.tip}`;
+        game.querySelector('#game-score').textContent = `${score} correct`;
+        game.querySelector('progress').value = round + 1;
+        bins.forEach(button => { button.disabled = true; });
+        next.hidden = false;
+        next.textContent = round === deck.length - 1 ? 'See your results →' : 'Next item →';
+        next.focus({ preventScroll: true });
+    }));
+    next.addEventListener('click', () => {
+        if (round === deck.length) {
+            restart();
+            bins[0].focus({ preventScroll: true });
+            return;
+        }
+        round++;
+        if (round < deck.length) {
+            renderRound();
+            bins[0].focus({ preventScroll: true });
+        } else {
+            game.querySelector('#game-round').textContent = 'Round complete';
+            game.querySelector('.game-emoji').textContent = score === deck.length ? '🌍' : '🌱';
+            game.querySelector('#game-item-name').textContent = `${score} / ${deck.length} sorted correctly`;
+            game.querySelector('.game-bins').hidden = true;
+            feedback.textContent = score === deck.length ? 'Planet-friendly pro! Keep that circular thinking going.' : 'Every small action counts. Play again and put what you learned into practice.';
+            next.textContent = 'Play again ↻';
+            next.focus({ preventScroll: true });
+        }
+    });
+    game.querySelector('.game-close').addEventListener('click', () => game.close());
+    game.addEventListener('click', event => {
+        if (event.target !== game) return;
+        const rect = game.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) game.close();
+    });
+    game.addEventListener('close', () => {
+        document.body.style.overflow = previousOverflow;
+        launch.focus({ preventScroll: true });
+    });
+});
+
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -33,10 +245,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             e.preventDefault();
             const target = document.querySelector(href);
             if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for sticky navbar
+                const offsetTop = target.getBoundingClientRect().top + window.scrollY - 80; // Account for sticky navbar
                 window.scrollTo({
                     top: offsetTop,
-                    behavior: 'smooth'
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('motion-paused') ? 'instant' : 'smooth'
                 });
             }
         }
@@ -122,6 +334,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let current = 0;
     if (quotes.length > 0) {
         setInterval(() => {
+            if (document.hidden || document.body.classList.contains('motion-paused') || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             quotes[current].classList.remove('active');
             current = (current + 1) % quotes.length;
             quotes[current].classList.add('active');
@@ -186,69 +399,52 @@ const contactForm = document.getElementById('contactForm');
 const formResult = document.getElementById('contact-result');
 const submitBtn = document.getElementById('submit-btn');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+if (contactForm && formResult && submitBtn) {
+    contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-
-        const botcheckValue = contactForm.querySelector('input[name="botcheck"]')?.value?.trim();
-        if (botcheckValue) {
-            formResult.style.display = 'block';
-            formResult.textContent = 'Submission blocked.';
-            formResult.style.backgroundColor = '#f8d7da';
-            formResult.style.color = '#721c24';
+        if (submitBtn.disabled) return;
+        if (!contactForm.checkValidity()) {
+            contactForm.reportValidity();
             return;
         }
-
-        // Visual feedback: Update button state
+        function showResult(message, state) {
+            formResult.style.display = 'block';
+            formResult.textContent = message;
+            formResult.className = `form-status form-status-${state}`;
+        }
+        if (contactForm.querySelector('input[name="botcheck"]')?.checked) {
+            showResult('Submission blocked.', 'error');
+            return;
+        }
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
-
-        const formData = new FormData(contactForm);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-
-        formResult.style.display = 'block';
-        formResult.textContent = 'Please wait...';
-        formResult.style.backgroundColor = '#f0f0f0';
-        formResult.style.color = '#333';
-
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    formResult.textContent = 'Message sent successfully!';
-                    formResult.style.backgroundColor = '#d4edda';
-                    formResult.style.color = '#155724';
-                    contactForm.reset();
-                    submitBtn.style.display = 'none'; // Hide button on success
-                } else {
-                    console.log(response);
-                    formResult.textContent = json.message;
-                    formResult.style.backgroundColor = '#f8d7da';
-                    formResult.style.color = '#721c24';
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                formResult.textContent = 'Something went wrong!';
-                formResult.style.backgroundColor = '#f8d7da';
-                formResult.style.color = '#721c24';
-            })
-            .then(function () {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit';
-                setTimeout(() => {
-                    // Keep result visible, or hide after 5s
-                    // formResult.style.display = "none";
-                }, 5000);
+        contactForm.setAttribute('aria-busy', 'true');
+        showResult('Sending your message...', 'pending');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+                signal: controller.signal
             });
+            const result = await response.json();
+            if (!response.ok || result.success !== true) {
+                throw new Error('Submission was not accepted.');
+            }
+            showResult('Message sent successfully! Thank you for reaching out.', 'success');
+            contactForm.reset();
+        } catch (error) {
+            showResult(error.name === 'AbortError'
+                ? 'The request took too long. Your message is still here—please try again.'
+                : 'We couldn’t send your message. Please try again, or email info@ethossustainability.org.', 'error');
+        } finally {
+            clearTimeout(timeout);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+            contactForm.setAttribute('aria-busy', 'false');
+        }
     });
 }
 
@@ -283,6 +479,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe project cards
 document.querySelectorAll('.project-card').forEach(card => {
+    if (reducedMotion.matches) return;
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -295,10 +492,10 @@ window.addEventListener('load', () => {
         const target = document.querySelector(window.location.hash);
         if (target) {
             setTimeout(() => {
-                const offsetTop = target.offsetTop - 80;
+                const offsetTop = target.getBoundingClientRect().top + window.scrollY - 80;
                 window.scrollTo({
                     top: offsetTop,
-                    behavior: 'smooth'
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('motion-paused') ? 'instant' : 'smooth'
                 });
             }, 100);
         }

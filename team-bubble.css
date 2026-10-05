@@ -1,13 +1,13 @@
 
 :root {
-    --color-cream: #FFFBF4;
-    --color-tan-light: #D4CCC4;
-    --color-tan: #A89E94;
-    --color-brown-light: #7D6F63;
-    --color-brown-dark: #514033;
-    --color-peach-light: #FFE2D6;
-    --color-peach: #FCBD9D;
-    --color-dark: #413429;
+    --color-cream: var(--bg-white);
+    --color-tan-light: var(--bg-light);
+    --color-tan: var(--border-color);
+    --color-brown-light: var(--primary-color);
+    --color-brown-dark: var(--primary-dark);
+    --color-peach-light: var(--bg-light);
+    --color-peach: var(--accent-color);
+    --color-dark: var(--text-dark);
 }
 
 .team-bubble-section {
