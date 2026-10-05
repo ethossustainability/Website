@@ -300,30 +300,65 @@ function createLightboxModal() {
     modal.style.transition = 'opacity 0.2s';
     modal.innerHTML = `
         <span id="lightboxClose" style="position:absolute;top:30px;right:50px;font-size:3rem;color:#fff;cursor:pointer;z-index:10001;">&times;</span>
-        <img id="lightboxImg" src="" alt="Gallery Image" style="max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+        <button type="button" class="lightbox-nav" id="lightboxPrev" aria-label="Previous image">&#8249;</button>
+        <img id="lightboxImg" src="" alt="Gallery Image" style="max-width:80vw;max-height:80vh;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+        <button type="button" class="lightbox-nav" id="lightboxNext" aria-label="Next image">&#8250;</button>
+        <span id="lightboxCount" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:.9rem;letter-spacing:.1em;"></span>
     `;
     document.body.appendChild(modal);
     // Close logic
     modal.addEventListener('click', (e) => {
-        if (e.target === modal || e.target.id === 'lightboxClose') {
-            modal.style.opacity = 0;
-            setTimeout(() => { modal.style.visibility = 'hidden'; }, 200);
-        }
+        if (e.target === modal || e.target.id === 'lightboxClose') closeLightbox();
     });
+}
+
+let lightboxImages = [];
+let lightboxIndex = 0;
+
+function isLightboxOpen() {
+    return document.getElementById('lightboxModal').style.visibility === 'visible';
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.style.opacity = 0;
+    setTimeout(() => { modal.style.visibility = 'hidden'; }, 200);
+}
+
+function showLightboxImage(index) {
+    const imgEl = document.getElementById('lightboxImg');
+    const total = lightboxImages.length;
+    lightboxIndex = (index + total) % total;
+    const img = lightboxImages[lightboxIndex];
+    imgEl.src = img.currentSrc || img.src;
+    imgEl.alt = img.alt || 'Gallery Image';
+    const multiple = total > 1;
+    document.getElementById('lightboxPrev').hidden = !multiple;
+    document.getElementById('lightboxNext').hidden = !multiple;
+    document.getElementById('lightboxCount').textContent = multiple ? `${lightboxIndex + 1} / ${total}` : '';
 }
 
 function enableGalleryLightbox() {
     createLightboxModal();
     const modal = document.getElementById('lightboxModal');
-    const imgEl = document.getElementById('lightboxImg');
     document.querySelectorAll('.gallery-grid .gallery-item img').forEach(img => {
         img.style.cursor = 'zoom-in';
         img.addEventListener('click', (e) => {
             e.stopPropagation();
-            imgEl.src = img.src;
+            // Cycle through the images of the gallery (event) this photo belongs to
+            lightboxImages = Array.from(img.closest('.gallery-grid').querySelectorAll('.gallery-item img'));
+            showLightboxImage(lightboxImages.indexOf(img));
             modal.style.visibility = 'visible';
             modal.style.opacity = 1;
         });
+    });
+    document.getElementById('lightboxPrev').addEventListener('click', () => showLightboxImage(lightboxIndex - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => showLightboxImage(lightboxIndex + 1));
+    document.addEventListener('keydown', (e) => {
+        if (!isLightboxOpen()) return;
+        if (e.key === 'ArrowLeft') showLightboxImage(lightboxIndex - 1);
+        else if (e.key === 'ArrowRight') showLightboxImage(lightboxIndex + 1);
+        else if (e.key === 'Escape') closeLightbox();
     });
 }
 
