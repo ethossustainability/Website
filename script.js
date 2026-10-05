@@ -382,10 +382,10 @@ function addFooterLegalLinks() {
         legalLinks.className = 'footer-legal';
         legalLinks.setAttribute('aria-label', 'Legal links');
         legalLinks.innerHTML = `
-            <a href="cookies-and-data-collection.html">Cookies &amp; Data Collection</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="accessibility-statement.html">Accessibility Statement</a>
-            <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+            <a href="/cookies-and-data-collection.html">Cookies &amp; Data Collection</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/accessibility-statement.html">Accessibility Statement</a>
+            <a href="/terms-and-conditions.html">Terms &amp; Conditions</a>
         `;
 
         footerBottom.parentNode.insertBefore(legalLinks, footerBottom);
