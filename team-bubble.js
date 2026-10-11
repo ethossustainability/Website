@@ -1,6 +1,6 @@
 // Team Bubble System for Ethos Website
 let activePersonButton = null;
-const teamMembers = [
+const boardMembers = [
     {
         name: 'Prahaladh Gopalakrishnan',
         role: 'Executive Director',
@@ -35,42 +35,6 @@ const teamMembers = [
         image: 'Assets/TeamPics/Nair.webp',
         objectPosition: '50% 50%',
         bio: 'Systems lead for the website, app, and AV. If anything technical fails, you know who to blame!'
-    },
-    {
-        name: 'Gregory Daley',
-        role: 'Head of Projects Department',
-        image: 'Assets/TeamPics/Gregory.webp',
-        objectPosition: '50% 50%',
-        bio: 'I oversee the various STEM projects at Ethos such as the solar car team.'
-    },
-    {
-        name: 'Arabella Glass',
-        role: 'STEM Department Head & Design Team',
-        image: 'Assets/TeamPics/Arabella.webp',
-        objectPosition: '50% 50%',
-        bio: 'Arabella Glass is a high school senior at Waterford Kettering High school in Waterford, Michigan. She loves spending time outside, and participates on multiple different sports teams and clubs. Her goal is to one day open up her own wildlife sanctuary. She is the STEM department head and is on the design team for Ethos.'
-    },
-    {
-        name: 'Ruhan Nagwekar',
-        role: 'Newsletter Lead',
-        image: 'Assets/TeamPics/Nagwekar.webp',
-        objectPosition: '50% 50%',
-        bio: 'Ruhan Nagwekar is the Newsletter Lead at Ethos Sustainability.'
-    }
-    ,
-    {
-        name: 'Sai Are',
-        role: 'Team Member',
-        image: 'Assets/TeamPics/Are.webp',
-        objectPosition: '50% 50%',
-        bio: ''
-    },
-    {
-        name: 'Prahas Kumar',
-        role: 'Team Member',
-        image: 'Assets/TeamPics/Kumar.webp',
-        objectPosition: '50% 50%',
-        bio: ''
     }
 ];
 
@@ -95,18 +59,17 @@ function showDetail(name, role, bio, group, image, objectPosition, zoom) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const boardGrid = document.getElementById('boardGrid');
-    const coordinatorsGrid = document.getElementById('coordinatorsGrid');
-    for (let i = 0; i < teamMembers.length; i++) {
+    for (let i = 0; i < boardMembers.length; i++) {
         const member = document.createElement('button');
         member.type = 'button';
         member.className = 'people-card';
-        const { name, role, bio, image, objectPosition, zoom } = teamMembers[i];
+        const { name, role, bio, image, objectPosition, zoom } = boardMembers[i];
         const finalObjectPosition = objectPosition || '50% 50%';
         const finalZoom = zoom || 1;
         member.setAttribute('aria-label', `Meet ${name}, ${role}`);
         member.onclick = () => {
             activePersonButton = member;
-            showDetail(name, role, bio || 'Part of the team bringing sustainable education to life.', 'team', image, finalObjectPosition, finalZoom);
+            showDetail(name, role, bio || 'Part of the board bringing sustainable education to life.', 'team', image, finalObjectPosition, finalZoom);
         };
         let imgContent = '';
         if (image) {
@@ -122,11 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span>${role}</span><span class="people-meet">Meet ${name.split(' ')[0]} ↗</span>
             </div>
         `;
-        if (i < 5) {
-            boardGrid.appendChild(member);
-        } else {
-            coordinatorsGrid.appendChild(member);
-        }
+        boardGrid.appendChild(member);
     }
     const peopleModal = document.getElementById('teamModal');
     peopleModal.setAttribute('role', 'dialog');
