@@ -308,7 +308,7 @@ body {
     width: auto;
 }
 
-.nav-brand h1 {
+.nav-brand .brand-name {
     font-size: 1.5rem;
     color: var(--primary-color);
     font-weight: 700;
@@ -1749,7 +1749,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 ::selection { background: var(--accent-color); color: var(--primary-dark); }
 :focus-visible { outline: 3px solid var(--primary-color); outline-offset: 5px; }
 .navbar { border-bottom: 1px solid var(--border-color); box-shadow: none; background: rgba(255,250,243,.96); }
-.nav-brand h1 { font-size: 1.2rem; letter-spacing: -.04em; }
+.nav-brand .brand-name { font-size: 1.2rem; letter-spacing: -.04em; }
 .nav-menu a { font-size: .88rem; position: relative; }
 .nav-menu a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--primary-color); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
 .nav-menu a:hover::after, .nav-menu a[aria-current="page"]::after { transform: scaleX(1); }
@@ -2014,7 +2014,7 @@ body.motion-paused .cursor-glow { display: none; }
     .planet-stamp span { font-size: .5rem; }
 }
 @media (max-width: 768px) {
-    .nav-brand h1 { font-size: 1.05rem; }
+    .nav-brand .brand-name { font-size: 1.05rem; }
     .brand-insignia { height: 36px; }
     .nav-toggle { padding: 8px; }
     .nav-menu { top: 69px; }
