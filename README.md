@@ -30,3 +30,10 @@ Referenced photographs use WebP copies capped at 1600 pixels with the source ima
 Run `node --test tests/contact-form.test.cjs` to check the contact submission handler with mocked service responses. These tests never send a message. Validation, the bot trap, service acceptance, failures, timeout, and duplicate-submit protection are covered; actual inbox delivery still requires a real submission.
 
 Browser checks covered desktop and 390px mobile layouts, mobile navigation, cursor movement, correct and incorrect answers, scoring, results, replay, Escape dismissal, and motion pause. JavaScript syntax and `git diff --check` also passed. The refresh has not been published to the live website.
+
+## SEO
+
+- Every page has a canonical URL, Open Graph and Twitter card tags, and a shared 1200x630 share image (`Assets/Social/ethos-social-share.jpg`).
+- The homepage declares the organization (NGO, 501(c)(3)) and website in JSON-LD; other pages declare breadcrumbs.
+- `robots.txt` points crawlers to `sitemap.xml`. When you add, rename, or remove a page, update `sitemap.xml` and give the new page the same head tags as its siblings.
+- `404.html` is served by GitHub Pages for missing URLs and is excluded from search results.
