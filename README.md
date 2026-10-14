@@ -37,3 +37,5 @@ Browser checks covered desktop and 390px mobile layouts, mobile navigation, curs
 - The homepage declares the organization (NGO, 501(c)(3)) and website in JSON-LD; other pages declare breadcrumbs.
 - `robots.txt` points crawlers to `sitemap.xml`. When you add, rename, or remove a page, update `sitemap.xml` and give the new page the same head tags as its siblings.
 - `404.html` is served by GitHub Pages for missing URLs and is excluded from search results.
+- Favicons (`favicon.ico`, `favicon-48.png`, `favicon-192.png`, `apple-touch-icon.png`) are square crops of `Assets/EthosLogoInsignia.png`. The navbar uses a small WebP copy (`Assets/EthosLogoInsignia-nav.webp`) instead of the full PNG.
+- Footer legal links are written into each page's HTML. `script.js` only adds them to a footer that lacks them.
